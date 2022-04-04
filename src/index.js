@@ -4,6 +4,8 @@ require('dotenv').config();
 // Import express and cors
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 // Set up express
 const app = express();
@@ -13,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 // Tell express to use a URL Encoding middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 
 
@@ -22,7 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 const customerRouter = require('./routers/customer');
 app.use('/customer', customerRouter);
 
-
+const getMovieRouter = require('./routers/movie')
+app.use('/movie', getMovieRouter);
 
 
 
