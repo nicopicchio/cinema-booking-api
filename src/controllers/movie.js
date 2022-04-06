@@ -22,25 +22,25 @@ const getMovieList = async (req, res) => {
 			screenings: true,
 		},
 	});
-	res.json(allMovies);
+	res.json({ allMovies });
 };
 
 const getMovieById = async (req, res) => {
-  const getSpecificMovie = await prisma.movie.findUnique({
-    where: {
-      id: parseInt(req.params.id)
-    }
-  })
-  if (!getSpecificMovie) {
-    res.status(404)
-    res.json({ error: 'Movie not found' })
-    return
-  }
-  res.json(getSpecificMovie)
-}
+	const getSpecificMovie = await prisma.movie.findUnique({
+		where: {
+			id: parseInt(req.params.id),
+		},
+	});
+	if (!getSpecificMovie) {
+		res.status(404);
+		res.json({ error: 'Movie not found' });
+		return;
+	}
+	res.json({ getSpecificMovie });
+};
 
 const addMovie = async (req, res) => {
-  const screeningsArray = [];
+	const screeningsArray = [];
 	if (req.body.screenings) {
 		for (const screening of req.body.screenings) {
 			screeningsArray.push({
@@ -54,11 +54,24 @@ const addMovie = async (req, res) => {
 			title: req.body.title,
 			runtimeMins: req.body.runtimeMins,
 			screenings: {
-        create: screeningsArray
-      }
+				create: screeningsArray,
+			},
 		},
 	});
-	res.json(createdMovie);
+	res.json({ createdMovie });
 };
 
-module.exports = { getMovieList, addMovie, getMovieById };
+const updateMovie = async (req, res) => {
+	const updatedMovie = await prisma.movie.update({
+		where: {
+			id: parseInt(req.params.id),
+		},
+		data: {
+			title: req.body.title,
+			runtimeMins: req.body.runtimeMins,
+		},
+	});
+	res.json({ updatedMovie });
+};
+
+module.exports = { getMovieList, addMovie, getMovieById, updateMovie };

@@ -11,7 +11,7 @@ const createTicket = async (req, res) => {
 			},
 		},
 	});
-	res.json(newTicket);
+	res.json({newTicket});
 };
 
 module.exports = { createTicket };

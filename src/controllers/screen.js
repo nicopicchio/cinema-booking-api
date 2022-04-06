@@ -8,7 +8,7 @@ const createScreen = async (req, res) => {
 			number: getScreens.length + 1,
 		},
 	});
-	res.json(newScreen);
+	res.json({newScreen});
 };
 
 module.exports = { createScreen };

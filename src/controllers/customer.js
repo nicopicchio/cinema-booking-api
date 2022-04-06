@@ -24,7 +24,7 @@ const createCustomer = async (req, res) => {
 		},
 	});
 
-	res.json({ data: createdCustomer });
+	res.json({createdCustomer });
 };
 
 const updateCustomer = async (req, res) => {
@@ -45,7 +45,7 @@ const updateCustomer = async (req, res) => {
       contact: true
     }
 	});
-	res.json(updatedCustomer);
+	res.json({updatedCustomer});
 };
 
 module.exports = {
