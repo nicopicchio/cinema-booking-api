@@ -24,7 +24,7 @@ const createCustomer = async (req, res) => {
 		},
 	});
 
-	res.json({createdCustomer });
+	res.json({ createdCustomer });
 };
 
 const updateCustomer = async (req, res) => {
@@ -41,11 +41,11 @@ const updateCustomer = async (req, res) => {
 				},
 			},
 		},
-    include: {
-      contact: true
-    }
+		include: {
+			contact: true,
+		},
 	});
-	res.json({updatedCustomer});
+	res.json({ updatedCustomer });
 };
 
 module.exports = {
